@@ -3,46 +3,39 @@
 
 #include <cstdlib>
 #include <time.h>
-
 #include "objPos.h"
 #include "objPosArrayList.h"
 
 using namespace std;
 
-class GameMechs
-{
+class GameMechs{
     private:
         char input;
         bool exitFlag;
         bool loseFlag;
         int score;
-
+        objPos foodPos;
         int boardSizeX;
         int boardSizeY;
-
-        objPos food;
 
     public:
         GameMechs();
         GameMechs(int boardX, int boardY);
-        ~GameMechs(); // is this one needed at all? Why or why not?
-        
-        bool getExitFlagStatus() const; 
+        bool getExitFlagStatus(); 
         void setExitTrue();
-        bool getLoseFlagStatus() const;
+        bool getLoseFlagStatus();
         void setLoseFlag();
-
-        char getInput() const;
+        char getInput();
         void setInput(char this_input);
         void clearInput();
-
-        int getBoardSizeX() const;
-        int getBoardSizeY() const;
-        
-        int getScore() const;
+        int getBoardSizeX();
+        int getBoardSizeY();
+        int getScore();
         void incrementScore();
         
         // More methods should be added here
+        void genFood(objPosArrayList *playerPosList);
+        void getFoodPos(objPos &returnPos);
 };
 
 #endif

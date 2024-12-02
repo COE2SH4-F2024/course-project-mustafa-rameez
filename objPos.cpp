@@ -1,65 +1,39 @@
 #include "objPos.h"
 
-objPos::objPos()
-{
-    pos = new Pos;
-    pos->x = 0;
-    pos->y = 0;
-    symbol = 0; //NULL
+objPos::objPos(){
+    x=0; y=0; symbol = 0; //objPos intialization
 }
 
-objPos::objPos(int xPos, int yPos, char sym)
-{
-    pos = new Pos;
-    pos->x = xPos;
-    pos->y = yPos;
-    symbol = sym;
+objPos::objPos(int xPos, int yPos, char sym){
+    x=xPos; y=yPos; symbol=sym; symbol = sym; //base input to dictate paramater of objPoS
+}
+//Copy ConstructorAdded
+objPos::objPos(objPos &o){
+    x=o.x; y=o.y; symbol=o.symbol;
 }
 
-// Respect the rule of six / minimum four
-// [TODO] Implement the missing special member functions to meet the minimum four rule
-
-
-
-
-void objPos::setObjPos(objPos o)
-{
-    pos->x = o.pos->x;
-    pos->y = o.pos->y;
-    symbol = o.symbol;
+void objPos::setObjPos(objPos o){
+    x=o.x; y=o.y; symbol=o.symbol; //sets objPos paramters
 }
 
-void objPos::setObjPos(int xPos, int yPos, char sym)
-{
-    pos->x = xPos;
-    pos->y = yPos;
-    symbol = sym;
+void objPos::setObjPos(int xPos, int yPos, char sym){
+    x=xPos; y=yPos; symbol=sym; //sets paramater of objPos
 }
 
-objPos objPos::getObjPos() const
-{
-    objPos returnPos;
-    returnPos.pos->x = pos->x;
-    returnPos.pos->y = pos->y;
-    returnPos.symbol = symbol;
-    
-    return returnPos;
+void objPos::getObjPos(objPos &returnPos){
+    returnPos.setObjPos(x,y,symbol);
 }
 
-char objPos::getSymbol() const
-{
+char objPos::getSymbol(){
     return symbol;
 }
 
-bool objPos::isPosEqual(const objPos* refPos) const
-{
-    return (refPos->pos->x == pos->x && refPos->pos->y == pos->y);
+bool objPos::isPosEqual(const objPos* refPos){
+    return (refPos->x==x&&refPos->y==y); //if refPos is == to curr objPos
 }
 
-char objPos::getSymbolIfPosEqual(const objPos* refPos) const
-{
-    if(isPosEqual(refPos))
-        return symbol;
-    else
-        return 0;
+char objPos::getSymbolIfPosEqual(const objPos* refPos){
+    if(isPosEqual(refPos)){
+        return getSymbol();}  //symbol returned 
+    else{return 0;}  
 }
